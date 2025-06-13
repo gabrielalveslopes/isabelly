@@ -1,0 +1,362 @@
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body {
+ font-family: 'Segoe UI', sans-serif;
+ background: linear-gradient(to right top, #fff7e6, #e9eaff);
+ color: #333;
+ line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+ background-color: white;
+ padding: 1rem;
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+ display: flex;
+ justify-content: center;
+ position: sticky;
+ top: 0;
+ z-index: 1000;
+}
+
+.navbar ul {
+ list-style: none;
+ display: flex;
+ gap: 2rem;
+}
+
+.navbar a {
+ text-decoration: none;
+ color: #333;
+ padding: 0.4rem 1.2rem;
+ border-radius: 20px;
+ transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+ background-color: #dff5f0;
+ color: #00a894;
+}
+
+/* Hero Section */
+.hero {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: wrap;
+ padding: 4rem 2rem;
+ background-color: white;
+ border-radius: 20px;
+ margin: 2rem auto;
+ max-width: 1100px;
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.hero-content {
+ display: flex;
+ align-items: center;
+ gap: 2rem;
+ flex-wrap: wrap;
+ justify-content: center; /* Centraliza itens em telas menores */
+}
+
+.hero-text {
+ max-width: 600px;
+ padding: 1rem;
+ text-align: center; /* Centraliza texto em telas menores */
+}
+
+.hero-text h1 {
+ font-size: 2.8rem;
+ font-weight: bold;
+ margin-bottom: 1rem;
+ color: #111;
+}
+
+.hero-text p {
+ font-size: 1.1rem;
+ color: #555;
+ text-align: center;
+}
+
+/* Imagem da hero */
+.hero-image img {
+ width: 320px;
+ max-width: 100%;
+ border-radius: 20px;
+ transform: rotate(-3deg);
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+ transition: transform 0.3s;
+}
+
+.hero-image img:hover {
+ transform: rotate(0deg) scale(1.03);
+}
+
+/* Seção Sobre */
+.about {
+ max-width: 900px;
+ margin: 3rem auto; /* Espaço entre hero e about */
+ padding: 2.5rem; /* Um pouco mais de padding */
+ background: white;
+ border-radius: 20px;
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+ text-align: center; /* Centraliza o texto "Sobre Você" */
+}
+
+.about h2 {
+ font-size: 2rem;
+ margin-bottom: 1rem;
+ color: #222;
+ border-bottom: 2px solid #e2e2e2; 
+ padding-bottom: 0.5rem;
+ display: inline-block; 
+}
+
+.about p {
+ font-size: 1.05rem;
+ color: #555;
+ margin-top: 1.5rem;
+}
+
+/* Galeria de Memórias */
+.gallery {
+ max-width: 1000px;
+ margin: 4rem auto; /* Mais espaço entre 'Sobre' e 'Galeria' */
+ padding: 3rem; /* Mais padding */
+ background: #fefefe;
+ border: 1px solid #ddd;
+ border-radius: 20px;
+ box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.gallery h2 {
+ text-align: center;
+ font-size: 2.2rem; /* Um pouco maior */
+ margin-bottom: 2.5rem; /* Mais espaço abaixo do título */
+ color: #111;
+ border-bottom: 2px solid #d0d0d0;
+ padding-bottom: 0.8rem;
+ display: inline-block;
+ width: auto;
+}
+
+.gallery-container {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 1.8rem; /* Aumenta um pouco o espaçamento entre as fotos */
+ justify-content: center;
+}
+
+.gallery-item {
+  width: 280px;
+  height: 360px; /* tamanho fixo padrão */
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px; /* altura fixa para imagem */
+  object-fit: cover;
+  display: block;
+  transition: all 0.4s ease;
+}
+
+.gallery-item .caption {
+  padding: 1rem;
+  font-size: 1rem;
+  color: #444;
+  text-align: center;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+/* Estilo do item expandido */
+.gallery-item.expanded {
+  width: 90%;
+  max-width: 800px;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  z-index: 1000;
+  background: white;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Imagem maior e altura automática */
+.gallery-item.expanded img {
+  height: auto;       /* deixa altura automática */
+  max-height: 70vh;   /* limita altura para caber na tela */
+  object-fit: contain; /* mantém proporção sem cortar */
+  margin-bottom: 1rem;
+}
+
+/* Legenda aparece com espaço */
+.gallery-item.expanded .caption {
+  max-height: 200px; /* ou outro valor que faça sentido */
+  overflow-y: auto;  /* adiciona barra de rolagem vertical */
+  opacity: 1;
+  visibility: visible;
+  font-size: 1.2rem;
+  padding: 1rem 2rem 2rem 2rem;
+}
+
+/* Seção Declaração Final */
+.final-declaration {
+ max-width: 900px;
+ margin: 4rem auto; /* Espaço entre galeria e declaração final */
+ padding: 3rem;
+ background: #ffffff;
+ border-radius: 20px;
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+ text-align: center;
+ border: 1px solid #f0f0f0;
+}
+
+.final-declaration h2 {
+ font-size: 2.2rem;
+ margin-bottom: 1.5rem;
+ color: #007bff; 
+ border-bottom: 2px solid #a7d9ff;
+ padding-bottom: 0.8rem;
+ display: inline-block;
+}
+
+.final-declaration p {
+ font-size: 1.15rem;
+ color: #444;
+ margin-bottom: 1.5rem;
+ line-height: 1.8;
+}
+
+.final-declaration .signature {
+ font-family: 'Dancing Script', cursive;
+ font-size: 1.5rem;
+ color: #888;
+ margin-top: 2rem;
+ font-weight: bold;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: row; /* mantém horizontal */
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+ .hero {
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin: 1rem auto;
+ }
+
+ .hero-text {
+  padding: 0;
+ }
+
+ .hero-text h1 {
+  font-size: 2.2rem;
+ }
+
+ .hero-text p {
+  font-size: 1rem;
+ }
+
+ .hero-image img {
+  margin-top: 2rem;
+  transform: none;
+  width: 280px; 
+
+ .about, .gallery, .final-declaration {
+  margin: 2rem auto;
+  padding: 1.5rem;
+ }
+
+ .about h2, .gallery h2, .final-declaration h2 {
+  font-size: 1.8rem;
+ }
+
+ .gallery-item {
+  width: 90%; 
+ }
+
+ .gallery-item.expanded {
+  width: 95%;
+  max-width: 95%;
+ }
+}
+
+.heart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.heart {
+  width: 250px;
+  height: 250px;
+  background-color: #ff4d6d;
+  position: relative;
+  transform: rotate(-45deg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 250px;
+  height: 250px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -125px;
+  left: 0;
+}
+
+.heart::after {
+  left: 125px;
+  top: 0;
+}
+
+
+/* Ajustes Responsivos para a Declaração Final */
+@media (max-width: 768px) {
+ .final-declaration {
+  margin: 2rem auto;
+  padding: 1.5rem; 
+ }
+
+ .final-declaration h2 {
+  font-size: 1.8rem; 
+ }
+}
